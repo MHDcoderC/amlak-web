@@ -151,7 +151,7 @@ const AdminPanel = memo(() => {
     if (window.confirm('آیا مطمئن هستید که می‌خواهید این کاربر را حذف کنید؟ این عمل غیرقابل بازگشت است.')) {
       try {
         const token = authManager.getToken();
-        await axios.delete(`${API_BASE_URL}/api/users/${userId}`, {
+        await axios.delete(`${API_BASE_URL}/api/users/admin/${userId}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchData();
