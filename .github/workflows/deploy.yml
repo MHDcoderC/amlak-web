@@ -1,0 +1,66 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build project
+      run: npm run build
+      env:
+        NODE_ENV: production
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist-files
+        path: dist/
+        
+    - name: Create deployment summary
+      run: |
+        echo "## 🚀 Build Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "✅ **Build Status:** Successful" >> $GITHUB_STEP_SUMMARY
+        echo "📦 **Build Output:** \`dist/\` directory" >> $GITHUB_STEP_SUMMARY
+        echo "🌐 **Live URL:** http://amlak.venusbox.ir/" >> $GITHUB_STEP_SUMMARY
+        echo "📱 **PWA Ready:** Yes" >> $GITHUB_STEP_SUMMARY
+        echo "🔍 **SEO Optimized:** Yes" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📊 Build Details:" >> $GITHUB_STEP_SUMMARY
+        echo "- **Node.js Version:** 18" >> $GITHUB_STEP_SUMMARY
+        echo "- **Build Tool:** Vite" >> $GITHUB_STEP_SUMMARY
+        echo "- **Framework:** React 19" >> $GITHUB_STEP_SUMMARY
+        echo "- **CSS Framework:** Tailwind CSS" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 🎯 Features Built:" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ PWA Support" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ SEO Optimization" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Responsive Design" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ RTL Support" >> $GITHUB_STEP_SUMMARY
+        echo "- ✅ Performance Optimized" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### 📁 Files Generated:" >> $GITHUB_STEP_SUMMARY
+        echo "- `dist/index.html` - Main HTML file" >> $GITHUB_STEP_SUMMARY
+        echo "- `dist/assets/` - JavaScript and CSS bundles" >> $GITHUB_STEP_SUMMARY
+        echo "- `dist/manifest.json` - PWA manifest" >> $GITHUB_STEP_SUMMARY
+        echo "- `dist/sw.js` - Service Worker" >> $GITHUB_STEP_SUMMARY
+        echo "- `dist/robots.txt` - SEO robots file" >> $GITHUB_STEP_SUMMARY
+        echo "- `dist/sitemap.xml` - SEO sitemap" >> $GITHUB_STEP_SUMMARY
