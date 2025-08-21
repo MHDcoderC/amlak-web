@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://amlak.mmdcode.top', 'https://www.amlak.mmdcode.top'] 
-    : ['http://localhost:3000', 'http://localhost:5173'],
+    : ['http://localhost:3000', 'http://localhost:5173', 'http://172.31.1.229:3000'],
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
