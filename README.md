@@ -14,12 +14,12 @@
 [![GitHub issues](https://img.shields.io/github/issues/mmdcode/amlak-web)](https://github.com/mmdcode/amlak-web/issues)
 [![GitHub license](https://img.shields.io/github/license/mmdcode/amlak-web)](https://github.com/mmdcode/amlak-web/blob/main/LICENSE)
 
-**🚀 Live Demo:** [http://amlak.venusbox.ir/](http://amlak.venusbox.ir/)
+**🚀 Live Demo:** [https://amlak.venusbox.ir/](https://amlak.venusbox.ir/)
 
 **📱 PWA Ready:** قابل نصب روی موبایل و دسکتاپ
 
 </div>
-
+<img src="https://amlak.venusbox.ir/index.png" />
 ---
 
 🏢 **سیستم کامل مدیریت املاک** با React.js و Node.js؛ مدیریت آگهی‌های املاک، جستجوی پیشرفته، نقشه تعاملی Leaflet، پنل مدیریت با نمودارها، سیستم احراز هویت JWT، آپلود تصاویر، فیلترهای پیشرفته و طراحی ریسپانسیو RTL. 🚀 PWA آماده، SEO بهینه، بدون بک‌اند؛ آماده دمو برای کارفرما و دیپلوی روی cPanel/GitHub Pages.
@@ -47,7 +47,7 @@ amlak.venusbox.ir/
 * Input Validation کامل
 * متغیرهای محیطی امن در .env
 * HTTPS اجباری در production
-
+<img src="https://amlak.venusbox.ir/panel.png" />
 ## اجرا (FA)
 
 ### پیش‌نیازها
@@ -90,6 +90,7 @@ PORT=5000
 ```bash
 npm run backend:dev
 ```
+<img src="https://amlak.venusbox.ir/add.png" />
 
 5. **اجرای Frontend (در ترمینال دوم):**
 
