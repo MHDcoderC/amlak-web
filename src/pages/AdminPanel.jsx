@@ -151,12 +151,20 @@ const AdminPanel = memo(() => {
     if (window.confirm('آیا مطمئن هستید که می‌خواهید این کاربر را حذف کنید؟ این عمل غیرقابل بازگشت است.')) {
       try {
         const token = authManager.getToken();
-        await axios.delete(`${API_BASE_URL}/api/users/admin/${userId}`, {
+        const url = `${API_BASE_URL}/api/users/admin/${userId}`;
+        console.log('🔍 Deleting user with URL:', url);
+        console.log('🔍 Token:', token ? 'Present' : 'Missing');
+        console.log('🔍 User ID:', userId);
+        
+        await axios.delete(url, {
           headers: { Authorization: `Bearer ${token}` }
         });
+        console.log('✅ User deleted successfully');
         fetchData();
       } catch (err) {
-        console.error(err);
+        console.error('❌ Delete user error:', err);
+        console.error('❌ Error response:', err.response?.data);
+        console.error('❌ Error status:', err.response?.status);
       }
     }
   }, [fetchData]);
