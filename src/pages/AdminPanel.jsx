@@ -125,12 +125,14 @@ const AdminPanel = memo(() => {
     if (window.confirm('آیا مطمئن هستید که می‌خواهید این کاربر را مسدود کنید؟')) {
       try {
         const token = authManager.getToken();
-        await axios.post(`${API_BASE_URL}/api/users/${userId}/ban`, {}, {
+        await axios.patch(`${API_BASE_URL}/api/users/admin/${userId}`, {
+          isBanned: true
+        }, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchData();
       } catch (err) {
-        console.error(err);
+        console.error('Error banning user:', err);
       }
     }
   }, [fetchData]);
@@ -138,12 +140,14 @@ const AdminPanel = memo(() => {
   const handleUnbanUser = useCallback(async (userId) => {
     try {
       const token = authManager.getToken();
-      await axios.post(`${API_BASE_URL}/api/users/${userId}/unban`, {}, {
+      await axios.patch(`${API_BASE_URL}/api/users/admin/${userId}`, {
+        isBanned: false
+      }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchData();
     } catch (err) {
-      console.error(err);
+      console.error('Error unbanning user:', err);
     }
   }, [fetchData]);
 
