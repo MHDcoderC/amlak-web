@@ -14,7 +14,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/mmdcode/amlak-web)](https://github.com/mmdcode/amlak-web/issues)
 [![GitHub license](https://img.shields.io/github/license/mmdcode/amlak-web)](https://github.com/mmdcode/amlak-web/blob/main/LICENSE)
 
-**🚀 Live Demo:** [https://amlak.venusbox.ir/](https://amlak.venusbox.ir/)
+**🚀 Live Demo:** [https://amlak.mmdcode.top/](https://amlak.mmdcode.top/)
 
 **📱 PWA Ready:** قابل نصب روی موبایل و دسکتاپ
 
