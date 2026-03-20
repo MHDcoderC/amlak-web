@@ -8,15 +8,37 @@ Production-ready real estate platform with React + Vite frontend and Express + M
 - Live demo: [amlak.mmdcode.top](https://amlak.mmdcode.top/)
 
 ## Key Features
-
-- Advanced property listing, filtering, and search flow
-- JWT authentication and role-based authorization (user/admin)
-- Admin moderation dashboard with analytics-ready data
-- Drag and drop image upload with preview/reorder flow
-- Interactive map integration via Leaflet
-- Modular React architecture (refactored Pro v2 structure)
+- Advanced property listing, filtering, and search (including server-side pagination)
+- Free-text search and advanced filter search with structured criteria (province, city, property type, min/max price, min/max area, rooms)
+- JWT authentication + role-based authorization (user/admin) with frontend token expiry checks
+- Unified Authentication Modal (single UI for login + simplified registration)
+- Interactive Leaflet map UX with:
+  - click-to-select coordinates
+  - Nominatim-powered location search
+  - custom marker styling
+- Image upload workflow with drag-and-drop multi-image gallery, preview, remove, and reordering (validated types + size limits)
+- Favorites modal, Mortgage Calculator modal, and Theme Toggle (light/dark)
+- Ad analytics: view/click tracking + admin rating (1-5 stars)
+- Admin dashboard: JWT-protected moderation actions (approve/reject), user management (ban/unban + safe delete), and analytics charts
 - Component-level tests with Vitest + Testing Library
-- Security hardening for API and upload surfaces
+- Security hardening for API and upload surfaces (helmet, strict CORS allowlist, rate limiting, auth-required upload, sanitized paths)
+
+## What's New in v2.0.0
+Pro v2 adds stronger moderation, richer analytics, and more production-safe security defaults:
+- Backend enhancements:
+  - Advanced search: `GET /api/ads/search/advanced` with filters + pagination (province, city, property type, min/max price, min/max area, rooms)
+  - Admin moderation: `PATCH /api/ads/:id/status` (pending/approved/rejected with optional `adminNotes`)
+  - Hardened uploads: `multer` validates file type (jpg/png/gif/webp) and enforces `MAX_FILE_SIZE`
+  - Usage analytics endpoints: `POST /api/ads/:id/view`, `POST /api/ads/:id/click`, `POST /api/ads/:id/rate`
+  - Production healthcheck: `GET /api/health` and strict CORS allowlist behavior
+- Frontend UX upgrades:
+  - Unified Authentication Modal (login + simplified registration)
+  - Favorites modal, Mortgage Calculator modal, and Theme Toggle (light/dark)
+  - Map interactions that directly update selected lat/lng
+- Operations:
+  - `setup:full` script automates install -> download images -> seed -> create admin
+- Production:
+  - Backend static serving supports multiple build layouts (more robust SPA hosting)
 
 ## Tech Stack
 
@@ -167,9 +189,9 @@ npm run test
 This local copy includes a few practical fixes/enhancements on top of the upstream repo:
 
 - Ads pagination now works with server-side `page`/`limit` requests to avoid page-change issues.
-- Development CORS allowlist expanded to include `127.0.0.1` variants.
+- Development CORS allowlist expanded to include `127.0.0.1` variants (easier local testing without CORS errors).
 - Production static serving in the backend supports multiple build locations (more robust SPA hosting).
-- JWT expiry detection in the frontend properly handles base64url payload encoding.
+- JWT expiry detection in the frontend properly handles base64url payload encoding and checks `exp` to clear stale sessions.
 - Vite base/API URL handling adjusted to better match dev/prod environments.
 
 ## License
