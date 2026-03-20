@@ -84,10 +84,16 @@ function generateCoordinates(provinceName) {
 // Get random local property images
 function getRandomPropertyImages(count = 3) {
   const candidateDirs = [
+    // Preferred (this repo keeps demo images under frontend/public)
+    path.join(__dirname, '../../frontend/public/images/properties'),
+    // Production builds may relocate downloaded assets under dist
+    path.join(__dirname, '../../frontend/dist/images/properties'),
+    // Legacy/fallback candidate locations
     path.join(__dirname, '../../public/images/properties'),
     path.join(__dirname, '../../dist/images/properties')
   ];
   const uploadsDir = path.join(__dirname, '../uploads');
+  const allowedExts = new Set(['.jpg', '.jpeg', '.png', '.gif', '.webp']);
 
   // Ensure uploads directory exists
   if (!fs.existsSync(uploadsDir)) {
@@ -99,15 +105,22 @@ function getRandomPropertyImages(count = 3) {
   for (const dir of candidateDirs) {
     if (fs.existsSync(dir)) {
       const files = fs.readdirSync(dir)
-        .filter(f => f.endsWith('.jpg') || f.endsWith('.png'))
-        .map(f => ({ relative: `/images/properties/${f}`, fullPath: path.join(dir, f) }));
+        .filter((f) => allowedExts.has(path.extname(f).toLowerCase()))
+        .map((f) => ({
+          // Used only if copy fails; the normal flow returns /uploads/...
+          relative: `/images/properties/${f}`,
+          fullPath: path.join(dir, f)
+        }));
       availableImages.push(...files);
     }
   }
 
   // If no local images, copy from Unsplash URLs (fallback)
   if (availableImages.length === 0) {
-    console.log('   ⚠️  No local property images found in public/dist. Run: npm run download:images');
+    console.log(
+      '   ⚠️  No local property images found in expected folders (frontend/public/images/properties / frontend/dist/images/properties / public/images/properties). ' +
+      'Run: (cd frontend && npm run download:images)'
+    );
     return [];
   }
 
@@ -118,7 +131,8 @@ function getRandomPropertyImages(count = 3) {
   // Copy selected images to uploads folder with unique names
   return selected.map((imgObj, index) => {
     const sourcePath = imgObj.fullPath;
-    const filename = `ad-${Date.now()}-${index}.jpg`;
+    const ext = path.extname(sourcePath).toLowerCase() || '.jpg';
+    const filename = `ad-${Date.now()}-${index}${ext}`;
     const destPath = path.join(uploadsDir, filename);
 
     try {
