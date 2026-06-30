@@ -159,10 +159,10 @@ import {
 
 // Property Type Icons
 export const PropertyTypeIcons = {
-  apartment: { icon: Building2, label: 'آپارتمان', color: 'text-blue-500', bgColor: 'bg-blue-500' },
-  villa: { icon: Home, label: 'ویلا', color: 'text-green-500', bgColor: 'bg-green-500' },
-  office: { icon: Building, label: 'دفتر', color: 'text-purple-500', bgColor: 'bg-purple-500' },
-  shop: { icon: Store, label: 'مغازه', color: 'text-orange-500', bgColor: 'bg-orange-500' },
+  apartment: { icon: Building2, label: 'آپارتمان', color: 'text-warm-600', bgColor: 'bg-warm-600' },
+  villa: { icon: Home, label: 'ویلا', color: 'text-emerald-600', bgColor: 'bg-emerald-600' },
+  office: { icon: Building, label: 'دفتر', color: 'text-warm-500', bgColor: 'bg-warm-500' },
+  shop: { icon: Store, label: 'مغازه', color: 'text-brand-600', bgColor: 'bg-brand-600' },
   land: { icon: Globe, label: 'زمین', color: 'text-amber-600', bgColor: 'bg-amber-600' },
 };
 
@@ -171,7 +171,7 @@ export const StatusIcons = {
   pending: { icon: Clock, color: 'text-yellow-600', bgColor: 'bg-yellow-100 dark:bg-yellow-900/30' },
   approved: { icon: CheckCircle, color: 'text-green-600', bgColor: 'bg-green-100 dark:bg-green-900/30' },
   rejected: { icon: XCircle, color: 'text-red-600', bgColor: 'bg-red-100 dark:bg-red-900/30' },
-  active: { icon: Zap, color: 'text-blue-600', bgColor: 'bg-blue-100 dark:bg-blue-900/30' },
+  active: { icon: Zap, color: 'text-brand-600', bgColor: 'bg-brand-100 dark:bg-brand-900/30' },
 };
 
 // Toast Icons
@@ -179,7 +179,7 @@ export const ToastIcons = {
   success: { icon: CheckCircle, color: 'text-green-500' },
   error: { icon: XCircle, color: 'text-red-500' },
   warning: { icon: AlertTriangle, color: 'text-yellow-500' },
-  info: { icon: Info, color: 'text-blue-500' },
+  info: { icon: Info, color: 'text-warm-500' },
 };
 
 // Navigation Icons
@@ -211,14 +211,14 @@ export const NavIcons = {
 
 // Stats Icons
 export const StatsIcons = {
-  ads: { icon: Home, color: 'from-blue-500 to-blue-600', bgGradient: 'from-blue-500 to-blue-600' },
-  views: { icon: Eye, color: 'from-green-500 to-emerald-600', bgGradient: 'from-green-500 to-emerald-600' },
-  clicks: { icon: MousePointerClick, color: 'from-purple-500 to-purple-600', bgGradient: 'from-purple-500 to-purple-600' },
-  users: { icon: Users, color: 'from-orange-500 to-orange-600', bgGradient: 'from-orange-500 to-orange-600' },
+  ads: { icon: Home, color: 'from-brand-600 to-brand-700', bgGradient: 'from-brand-600 to-brand-700' },
+  views: { icon: Eye, color: 'from-emerald-600 to-emerald-700', bgGradient: 'from-emerald-600 to-emerald-700' },
+  clicks: { icon: MousePointerClick, color: 'from-warm-600 to-warm-700', bgGradient: 'from-warm-600 to-warm-700' },
+  users: { icon: Users, color: 'from-brand-500 to-brand-600', bgGradient: 'from-brand-500 to-brand-600' },
   pending: { icon: Clock, color: 'from-yellow-500 to-yellow-600', bgGradient: 'from-yellow-500 to-yellow-600' },
   approved: { icon: CheckCircle, color: 'from-green-500 to-emerald-600', bgGradient: 'from-green-500 to-emerald-600' },
   rejected: { icon: XCircle, color: 'from-red-500 to-red-600', bgGradient: 'from-red-500 to-red-600' },
-  total: { icon: BarChart3, color: 'from-blue-500 to-purple-600', bgGradient: 'from-blue-500 to-purple-600' },
+  total: { icon: BarChart3, color: 'from-brand-500 to-brand-700', bgGradient: 'from-brand-500 to-brand-700' },
 };
 
 // Feature Icons
@@ -288,15 +288,15 @@ export const FooterFeatureIcons = {
   estimate: TrendingUp,
 };
 
-// Testimonial Avatars (using initials instead of emojis for professionalism)
+// Testimonial Avatars
 export const getTestimonialAvatar = (index) => {
   const colors = [
-    'bg-blue-500',
-    'bg-green-500',
-    'bg-purple-500',
-    'bg-orange-500',
-    'bg-pink-500',
-    'bg-teal-500',
+    'bg-brand-700',
+    'bg-emerald-600',
+    'bg-warm-600',
+    'bg-amber-600',
+    'bg-warm-700',
+    'bg-brand-600',
   ];
   return colors[index % colors.length];
 };

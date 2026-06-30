@@ -49,32 +49,32 @@ const MortgageCalculator = memo(({ isOpen, onClose }) => {
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-scale-in">
       <div className="bg-white dark:bg-slate-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-500 to-purple-600 rounded-t-3xl">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="flex items-center justify-between p-5 border-b border-warm-200 dark:border-warm-700 bg-brand-700 rounded-t-3xl">
+          <div className="flex items-center gap-2.5">
+            <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
+              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white">ماشین‌حساب وام مسکن</h2>
-              <p className="text-white/80 text-sm">محاسبه اقساط و سود وام</p>
+              <h2 className="text-lg font-bold text-white">ماشین‌حساب وام مسکن</h2>
+              <p className="text-white/70 text-xs">محاسبه اقساط و سود وام</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 bg-white/20 hover:bg-white/30 rounded-full transition-colors duration-200"
+            className="p-1.5 bg-white/20 hover:bg-white/30 rounded-lg transition-colors"
           >
-            <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
 
         {/* Presets */}
-        <div className="p-6 bg-gray-50 dark:bg-slate-700/30">
-          <h3 className="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">پیش‌تنظیمات سریع</h3>
-          <div className="flex flex-wrap gap-2">
+        <div className="p-5 bg-warm-50 dark:bg-warm-700/30">
+          <h3 className="text-xs font-bold text-warm-600 dark:text-warm-400 mb-2">پیش‌تنظیمات سریع</h3>
+          <div className="flex flex-wrap gap-1.5">
             {presets.map((preset) => (
               <button
                 key={preset.name}
@@ -82,7 +82,7 @@ const MortgageCalculator = memo(({ isOpen, onClose }) => {
                   setInterestRate(preset.rate);
                   setLoanAmount(preset.maxAmount);
                 }}
-                className="px-4 py-2 bg-white dark:bg-slate-700 border border-gray-200 dark:border-gray-600 rounded-xl text-sm font-medium hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200"
+                className="px-3 py-1.5 bg-white dark:bg-warm-600 border border-warm-200 dark:border-warm-500 rounded-lg text-xs font-medium hover:border-brand-500 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-150"
               >
                 {preset.name} (%{preset.rate})
               </button>
@@ -192,29 +192,29 @@ const MortgageCalculator = memo(({ isOpen, onClose }) => {
         </div>
 
         {/* Results */}
-        <div className="p-6 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-700/50 dark:to-slate-600/50">
-          <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-4">نتایج محاسبه</h3>
+        <div className="p-5 bg-warm-50 dark:bg-warm-700/30">
+          <h3 className="text-sm font-bold text-warm-800 dark:text-warm-200 mb-3">نتایج محاسبه</h3>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white dark:bg-slate-700 p-4 rounded-2xl shadow-lg">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">قسط ماهانه</div>
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <div className="grid grid-cols-2 gap-3">
+            <div className="bg-white dark:bg-warm-800 p-3 rounded-lg border border-warm-200 dark:border-warm-700">
+              <div className="text-xs text-warm-500 dark:text-warm-400 mb-0.5">قسط ماهانه</div>
+              <div className="text-xl font-bold text-brand-700 dark:text-brand-400">
                 {formatNumber(calculations.monthlyPayment)}
               </div>
-              <div className="text-xs text-gray-500">تومان</div>
+              <div className="text-[10px] text-warm-400">تومان</div>
             </div>
 
-            <div className="bg-white dark:bg-slate-700 p-4 rounded-2xl shadow-lg">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">مجموع بازپرداخت</div>
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+            <div className="bg-white dark:bg-warm-800 p-3 rounded-lg border border-warm-200 dark:border-warm-700">
+              <div className="text-xs text-warm-500 dark:text-warm-400 mb-0.5">مجموع بازپرداخت</div>
+              <div className="text-xl font-bold text-warm-800 dark:text-warm-200">
                 {formatNumber(calculations.totalPayment)}
               </div>
-              <div className="text-xs text-gray-500">تومان</div>
+              <div className="text-[10px] text-warm-400">تومان</div>
             </div>
 
-            <div className="bg-white dark:bg-slate-700 p-4 rounded-2xl shadow-lg">
-              <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">مجموع سود</div>
-              <div className="text-2xl font-bold text-red-500">
+            <div className="bg-white dark:bg-warm-800 p-3 rounded-lg border border-warm-200 dark:border-warm-700">
+              <div className="text-xs text-warm-500 dark:text-warm-400 mb-0.5">مجموع سود</div>
+              <div className="text-xl font-bold text-red-500">
                 {formatNumber(calculations.totalInterest)}
               </div>
               <div className="text-xs text-gray-500">تومان</div>

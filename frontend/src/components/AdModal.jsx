@@ -41,11 +41,11 @@ const AdModal = memo(({ ad, onClose, onCall, onMessage }) => {
     <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-4">
       <div className="bg-white dark:bg-slate-900 rounded-3xl max-w-6xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-gray-100 dark:border-slate-700">
         {/* Header */}
-        <div className="sticky top-0 z-20 flex justify-between items-center p-6 border-b border-gray-200 dark:border-slate-700 bg-gradient-to-r from-blue-50 via-white to-purple-50 dark:from-slate-800 dark:to-slate-900 rounded-t-3xl">
-          <h2 className="text-2xl sm:text-3xl font-bold text-blue-700 dark:text-blue-400">{ad.title}</h2>
+        <div className="sticky top-0 z-20 flex justify-between items-center p-6 border-b border-warm-200 dark:border-warm-700 bg-white dark:bg-warm-900 rounded-t-3xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-warm-900 dark:text-white">{ad.title}</h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-3xl font-bold p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-xl transition-all duration-300 hover:scale-110"
+            className="text-warm-400 hover:text-warm-700 dark:hover:text-warm-200 text-2xl font-bold p-1.5 hover:bg-warm-100 dark:hover:bg-warm-800 rounded-lg transition-colors"
           >
             ×
           </button>
@@ -54,7 +54,7 @@ const AdModal = memo(({ ad, onClose, onCall, onMessage }) => {
         <div className="p-6">
           {/* تصاویر */}
           <div className="mb-8">
-            <div className="relative h-72 sm:h-80 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+            <div className="relative h-72 sm:h-80 bg-warm-100 dark:bg-warm-700 rounded-2xl overflow-hidden">
               {ad.images && ad.images.length > 0 ? (
                 <>
                   {/* Main image */}
@@ -145,38 +145,38 @@ const AdModal = memo(({ ad, onClose, onCall, onMessage }) => {
                 اطلاعات ملک
               </h3>
               
-              <div className="space-y-4">
-                <div className="flex items-center p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  <svg className="w-6 h-6 text-blue-500 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="space-y-3">
+                <div className="flex items-center p-3 bg-warm-50 dark:bg-warm-800 rounded-lg border border-warm-200 dark:border-warm-700">
+                  <svg className="w-5 h-5 text-brand-600 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-gray-700 font-semibold text-lg">{ad.province} - {ad.city}</span>
+                  <span className="text-warm-800 dark:text-warm-200 font-semibold text-sm">{ad.province} - {ad.city}</span>
                 </div>
 
-                <div className="flex items-center p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  <svg className="w-6 h-6 text-green-500 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center p-3 bg-warm-50 dark:bg-warm-800 rounded-lg border border-warm-200 dark:border-warm-700">
+                  <svg className="w-5 h-5 text-emerald-600 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
-                  <span className="text-gray-700 font-semibold text-lg">{getPropertyTypeLabelFa(ad.propertyType)}</span>
+                  <span className="text-warm-800 dark:text-warm-200 font-semibold text-sm">{getPropertyTypeLabelFa(ad.propertyType)}</span>
                 </div>
 
                 {ad.area && (
-                  <div className="flex items-center p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105">
-                    <svg className="w-6 h-6 text-purple-500 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center p-3 bg-warm-50 dark:bg-warm-800 rounded-lg border border-warm-200 dark:border-warm-700">
+                    <svg className="w-5 h-5 text-brand-600 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
                     </svg>
-                    <span className="text-gray-700 font-semibold text-lg">{ad.area} متر مربع</span>
+                    <span className="text-warm-800 dark:text-warm-200 font-semibold text-sm">{ad.area} متر مربع</span>
                   </div>
                 )}
 
                 {ad.rooms && (
-                  <div className="flex items-center p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105">
-                    <svg className="w-6 h-6 text-orange-500 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center p-3 bg-warm-50 dark:bg-warm-800 rounded-lg border border-warm-200 dark:border-warm-700">
+                    <svg className="w-5 h-5 text-amber-600 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5a2 2 0 012-2h4a2 2 0 012 2v2H8V5z" />
                     </svg>
-                    <span className="text-gray-700 font-semibold text-lg">{ad.rooms} خواب</span>
+                    <span className="text-warm-800 dark:text-warm-200 font-semibold text-sm">{ad.rooms} خواب</span>
                   </div>
                 )}
 
@@ -241,36 +241,36 @@ const AdModal = memo(({ ad, onClose, onCall, onMessage }) => {
               </div>
 
               {/* اطلاعات تماس */}
-              <div className="bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 p-6 rounded-2xl shadow-xl border border-gray-100">
-                <h4 className="text-xl font-bold mb-6 flex items-center">
-                  <span className="ml-2 text-xl">📞</span>
+              <div className="bg-warm-50 dark:bg-warm-800 p-5 rounded-xl border border-warm-200 dark:border-warm-700">
+                <h4 className="text-base font-bold mb-4 flex items-center gap-2">
+                  <span>📞</span>
                   اطلاعات تماس
                 </h4>
                 
-                <div className="space-y-4">
-                  <div className="flex items-center p-4 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105">
-                    <svg className="w-6 h-6 text-green-500 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="space-y-3">
+                  <div className="flex items-center p-3 bg-white dark:bg-warm-900 rounded-lg border border-warm-200 dark:border-warm-700">
+                    <svg className="w-5 h-5 text-emerald-600 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    <span className="text-gray-700 font-bold text-lg">{ad.phone}</span>
+                    <span className="text-warm-800 dark:text-warm-200 font-bold text-sm">{ad.phone}</span>
                   </div>
 
-                  <div className="flex items-center p-4 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:scale-105">
-                    <svg className="w-6 h-6 text-blue-500 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="flex items-center p-3 bg-white dark:bg-warm-900 rounded-lg border border-warm-200 dark:border-warm-700">
+                    <svg className="w-5 h-5 text-brand-600 ml-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    <span className="text-gray-700 font-semibold text-lg">{ad.address}</span>
+                    <span className="text-warm-800 dark:text-warm-200 font-semibold text-sm">{ad.address}</span>
                   </div>
                 </div>
 
                 {/* دکمه‌های تماس */}
-                <div className="mt-6 space-y-3">
+                <div className="mt-4 space-y-2">
                   <button
                     onClick={() => onCall(ad.phone)}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
+                    className="w-full bg-brand-700 hover:bg-brand-800 text-white py-3 px-5 rounded-lg font-bold text-sm transition-colors flex items-center justify-center gap-2"
                   >
-                    <svg className="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                     تماس با فروشنده
@@ -278,9 +278,9 @@ const AdModal = memo(({ ad, onClose, onCall, onMessage }) => {
                   
                   <button
                     onClick={() => onMessage(ad.phone)}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
+                    className="w-full bg-warm-700 hover:bg-warm-800 text-white py-3 px-5 rounded-lg font-bold text-sm transition-colors flex items-center justify-center gap-2"
                   >
-                    <svg className="w-6 h-6 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                     </svg>
                     ارسال پیام

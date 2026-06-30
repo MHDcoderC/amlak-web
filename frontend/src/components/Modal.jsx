@@ -63,7 +63,7 @@ const Modal = memo(({ setIsModalOpen, onAdCreated }) => {
 
   const handleDropFiles = useCallback((e) => {
     e.preventDefault();
-    e.currentTarget.classList.remove('border-blue-400', 'bg-blue-50');
+    e.currentTarget.classList.remove('border-brand-400', 'bg-brand-50');
     const files = Array.from(e.dataTransfer.files || []);
     if (!files.length) return;
     setImageLoading(true);
@@ -146,8 +146,8 @@ const Modal = memo(({ setIsModalOpen, onAdCreated }) => {
             imageUrls={formData.imageUrls}
             imageLoading={imageLoading}
             onInputChange={handleImageUpload}
-            onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add('border-blue-400', 'bg-blue-50'); }}
-            onDragLeave={(e) => { e.preventDefault(); e.currentTarget.classList.remove('border-blue-400', 'bg-blue-50'); }}
+            onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add('border-brand-400', 'bg-brand-50'); }}
+            onDragLeave={(e) => { e.preventDefault(); e.currentTarget.classList.remove('border-brand-400', 'bg-brand-50'); }}
             onDropFiles={handleDropFiles}
             onRemoveImage={handleRemoveImage}
             onClearImages={handleClearImages}
@@ -166,7 +166,7 @@ const Modal = memo(({ setIsModalOpen, onAdCreated }) => {
 
           <div className="flex justify-end gap-3">
             <button type="button" onClick={() => setIsModalOpen(false)} className="px-6 py-3 border rounded-xl">انصراف</button>
-            <button type="submit" disabled={loading} className="px-6 py-3 bg-blue-600 text-white rounded-xl disabled:opacity-50">
+            <button type="submit" disabled={loading} className="px-6 py-3 bg-brand-700 text-white rounded-lg disabled:opacity-50 font-semibold text-sm">
               {loading ? 'در حال ثبت...' : 'ثبت آگهی'}
             </button>
           </div>

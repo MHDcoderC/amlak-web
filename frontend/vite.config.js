@@ -17,7 +17,7 @@ export default defineConfig({
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
           charts: ['chart.js', 'react-chartjs-2'],
-          maps: ['leaflet', 'react-leaflet']
+          maps: ['leaflet']
         },
         // بهینه‌سازی نام فایل‌ها
         chunkFileNames: 'assets/[name]-[hash].js',

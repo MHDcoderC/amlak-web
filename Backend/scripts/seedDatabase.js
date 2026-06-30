@@ -9,6 +9,7 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
+const { URL } = require('url');
 const User = require('../models/User');
 const Ad = require('../models/Ad');
 require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
@@ -81,7 +82,37 @@ function generateCoordinates(provinceName) {
   return { lat: parseFloat(lat.toFixed(6)), lng: parseFloat(lng.toFixed(6)) };
 }
 
-// Get random local property images
+/** Same naming as frontend/download-images.cjs (property-01.jpg … property-30.jpg) */
+function getDefaultRemotePropertyFilenames() {
+  const names = [];
+  for (let i = 1; i <= 30; i += 1) {
+    names.push(`property-${String(i).padStart(2, '0')}.jpg`);
+  }
+  return names;
+}
+
+function parseRemoteFilenamesFromEnv() {
+  const raw = process.env.SEED_PROPERTY_IMAGE_FILENAMES;
+  if (!raw || !String(raw).trim()) return null;
+  return String(raw)
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+/** Base URL for seeded property images on the server (no trailing slash), e.g. https://amlak.mmdcode.top/images/properties */
+function getRemotePropertyImagesBaseUrl() {
+  const u = process.env.SEED_PROPERTY_IMAGES_BASE_URL;
+  if (!u || !String(u).trim()) return '';
+  return String(u).replace(/\/+$/, '');
+}
+
+function joinRemotePropertyUrl(base, filename) {
+  const baseWithSlash = base.endsWith('/') ? base : `${base}/`;
+  return new URL(filename, baseWithSlash).href;
+}
+
+// Get random local property images, or full URLs from SEED_PROPERTY_IMAGES_BASE_URL when no local folder
 function getRandomPropertyImages(count = 3) {
   const candidateDirs = [
     // Preferred (this repo keeps demo images under frontend/public)
@@ -115,11 +146,26 @@ function getRandomPropertyImages(count = 3) {
     }
   }
 
-  // If no local images, copy from Unsplash URLs (fallback)
+  // Remote/CDN: same paths as static hosting (e.g. /images/properties on production domain)
+  if (availableImages.length === 0) {
+    const remoteBase = getRemotePropertyImagesBaseUrl();
+    if (remoteBase) {
+      const filenames = parseRemoteFilenamesFromEnv() || getDefaultRemotePropertyFilenames();
+      const remoteUrls = filenames.map((name) => joinRemotePropertyUrl(remoteBase, name));
+      const shuffled = remoteUrls.sort(() => 0.5 - Math.random());
+      const picked = shuffled.slice(0, Math.min(count, shuffled.length));
+      console.log(
+        `   📎 Using ${picked.length} remote property image URL(s) from ${remoteBase}`
+      );
+      return picked;
+    }
+  }
+
+  // If no local images and no remote base
   if (availableImages.length === 0) {
     console.log(
       '   ⚠️  No local property images found in expected folders (frontend/public/images/properties / frontend/dist/images/properties / public/images/properties). ' +
-      'Run: (cd frontend && npm run download:images)'
+      'Either run (cd frontend && npm run download:images), or set SEED_PROPERTY_IMAGES_BASE_URL to your hosted folder (e.g. https://yourdomain.com/images/properties).'
     );
     return [];
   }

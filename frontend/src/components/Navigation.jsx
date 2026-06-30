@@ -1,7 +1,7 @@
 import { useState, useCallback, memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
-import { Home, Shield, User, LogOut, Sparkles, Lock, Menu, X } from 'lucide-react';
+import { Home, Shield, User, LogOut, Menu, X } from 'lucide-react';
 
 const Navigation = memo(({
   currentPage,
@@ -23,210 +23,150 @@ const Navigation = memo(({
 
   const handlePageChange = useCallback((page) => {
     onPageChange(page);
-    if (page === 'home') {
-      navigate('/');
-    } else if (page === 'admin') {
-      navigate('/admin');
-    }
+    if (page === 'home') navigate('/');
+    else if (page === 'admin') navigate('/admin');
   }, [onPageChange, navigate]);
 
-  const handleMobilePageChange = useCallback((page) => {
-    handlePageChange(page);
-    setIsMobileMenuOpen(false);
-  }, [handlePageChange]);
-
-  const handleMobileLoginClick = useCallback(() => {
-    onLoginClick();
-    setIsMobileMenuOpen(false);
-  }, [onLoginClick]);
-
-  const handleMobileLogout = useCallback(() => {
-    onLogout();
-    setIsMobileMenuOpen(false);
-  }, [onLogout]);
-
-  const handleMobileUserDashboardClick = useCallback(() => {
-    onUserDashboardClick();
-    setIsMobileMenuOpen(false);
-  }, [onUserDashboardClick]);
-
-  const handleMobileFavoritesClick = useCallback(() => {
-    onFavoritesClick();
-    setIsMobileMenuOpen(false);
-  }, [onFavoritesClick]);
-
-  const handleMobileCalculatorClick = useCallback(() => {
-    onCalculatorClick();
-    setIsMobileMenuOpen(false);
-  }, [onCalculatorClick]);
+  const closeMobile = useCallback(() => setIsMobileMenuOpen(false), []);
 
   return (
-    <nav className="bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl shadow-lg border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <nav className="bg-white/90 dark:bg-warm-900/90 backdrop-blur-xl border-b border-warm-200 dark:border-warm-700 sticky top-0 z-50">
+      <div className="page-shell">
+        <div className="flex justify-between items-center h-14">
           {/* Logo */}
-          <div className="flex items-center">
-            <div className="flex-shrink-0 cursor-pointer" onClick={() => handlePageChange('home')}>
-              <div className="flex items-center space-x-2 space-x-reverse">
-                <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                  <Home className="w-5 h-5 text-white" />
-                </div>
-                <div className="hidden sm:block">
-                  <h1 className="text-xl font-bold text-blue-700 dark:text-blue-400">
-                    املاک ایران
-                  </h1>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 -mt-1">ورژن ۲</p>
-                </div>
-              </div>
+          <div
+            className="flex items-center gap-2.5 cursor-pointer select-none"
+            onClick={() => handlePageChange('home')}
+          >
+              <div className="w-8 h-8 bg-brand-700 rounded-lg flex items-center justify-center">
+              <Home className="w-4 h-4 text-white" />
+            </div>
+            <div className="hidden sm:block leading-tight">
+              <h1 className="text-base font-black text-brand-700 dark:text-brand-400">
+                املاک ایران
+              </h1>
+              <p className="text-[10px] text-warm-400 dark:text-warm-500 -mt-0.5">نسخه ۲</p>
             </div>
           </div>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-2">
-            {/* Calculator Button */}
+          {/* Desktop */}
+          <div className="hidden lg:flex items-center gap-1.5">
+            {/* Calculator */}
             <button
               onClick={onCalculatorClick}
-              className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-xl transition-all duration-200 group relative"
+              className="p-2 text-warm-500 dark:text-warm-400 hover:text-warm-800 dark:hover:text-warm-200 hover:bg-warm-100 dark:hover:bg-warm-800 rounded-lg transition-colors duration-150"
               title="ماشین‌حساب وام"
             >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              <svg className="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
-              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-1 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
-                ماشین‌حساب وام
-              </span>
             </button>
 
-            {/* Favorites Button */}
+            {/* Favorites */}
             <button
               onClick={onFavoritesClick}
-              className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-xl transition-all duration-200 group relative"
+              className="p-2 text-warm-500 dark:text-warm-400 hover:text-warm-800 dark:hover:text-warm-200 hover:bg-warm-100 dark:hover:bg-warm-800 rounded-lg transition-colors duration-150 relative"
               title="علاقه‌مندی‌ها"
             >
-              <div className="relative">
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-                {favoritesCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                    {favoritesCount > 9 ? '9+' : favoritesCount}
-                  </span>
-                )}
-              </div>
-              <span className="absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-1 bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none">
-                علاقه‌مندی‌ها
-              </span>
-            </button>
-
-            {/* Theme Toggle */}
-            <ThemeToggle />
-
-            {/* Home Button */}
-            <button
-              onClick={() => handlePageChange('home')}
-              className={`px-4 py-2 rounded-xl font-medium text-sm transition-all duration-300 transform hover:scale-105 relative overflow-hidden group ${
-                currentPage === 'home'
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-slate-600'
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              <span className="flex items-center space-x-2 space-x-reverse relative z-10">
-                <Home className="w-4 h-4" />
-                <span>صفحه اصلی</span>
-              </span>
-            </button>
-
-            {/* User Authentication */}
-            {user ? (
-              <div className="flex items-center space-x-4 space-x-reverse mr-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">سلام، {user.name}</span>
-                {user.role === 'admin' ? (
-                  <button
-                    onClick={() => handlePageChange('admin')}
-                    className="px-4 py-2 bg-red-600 text-white rounded-xl font-medium text-sm hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                  >
-                    <span className="flex items-center space-x-2 space-x-reverse">
-                      <Shield className="w-4 h-4" />
-                      <span>پنل مدیریت</span>
-                    </span>
-                  </button>
-                ) : (
-                  <button
-                    onClick={onUserDashboardClick}
-                    className="px-4 py-2 bg-emerald-600 text-white rounded-xl font-medium text-sm hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                  >
-                    <span className="flex items-center space-x-2 space-x-reverse">
-                      <User className="w-4 h-4" />
-                      <span>پنل کاربری</span>
-                    </span>
-                  </button>
-                )}
-                <button
-                  onClick={onLogout}
-                  className="px-4 py-2 bg-red-600 text-white rounded-xl font-medium text-sm hover:bg-red-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  <span className="flex items-center space-x-2 space-x-reverse">
-                    <LogOut className="w-4 h-4" />
-                    <span>خروج</span>
-                  </span>
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={onLoginClick}
-                className="px-4 py-2 bg-blue-600 text-white rounded-xl font-medium text-sm hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg relative overflow-hidden group border border-white/20"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                <span className="flex items-center space-x-2 space-x-reverse relative z-10">
-                  <Sparkles className="w-4 h-4" />
-                  <span>ورود / ثبت‌نام</span>
-                  <Lock className="w-4 h-4" />
-                </span>
-              </button>
-            )}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="lg:hidden flex items-center gap-2">
-            {/* Mobile Favorites */}
-            <button
-              onClick={handleMobileFavoritesClick}
-              className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-xl relative"
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              <svg className="w-[18px] h-[18px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
               {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
                   {favoritesCount > 9 ? '9+' : favoritesCount}
                 </span>
               )}
             </button>
 
-            {/* Mobile Calculator */}
-            <button
-              onClick={handleMobileCalculatorClick}
-              className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-xl"
-            >
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            </button>
-
-            {/* Theme Toggle */}
+            {/* Theme */}
             <ThemeToggle />
 
-            {/* Hamburger Menu */}
+            {/* Home */}
+            <button
+              onClick={() => handlePageChange('home')}
+              className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors duration-150 ${
+                currentPage === 'home'
+                  ? 'bg-brand-600 text-white'
+                  : 'text-warm-600 dark:text-warm-400 hover:bg-warm-100 dark:hover:bg-warm-800'
+              }`}
+            >
+              <span className="flex items-center gap-1.5">
+                <Home className="w-4 h-4" />
+                خانه
+              </span>
+            </button>
+
+            {/* Auth */}
+            {user ? (
+              <div className="flex items-center gap-2 mr-1">
+                <span className="text-xs text-warm-500 dark:text-warm-400">{user.name} سلام</span>
+                {user.role === 'admin' ? (
+                  <button
+                    onClick={() => handlePageChange('admin')}
+                    className="px-3 py-1.5 bg-red-600 text-white rounded-lg text-xs font-semibold hover:bg-red-700 transition-colors"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <Shield className="w-3.5 h-3.5" />
+                      مدیریت
+                    </span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={onUserDashboardClick}
+                    className="px-3 py-1.5 bg-brand-600 text-white rounded-lg text-xs font-semibold hover:bg-brand-700 transition-colors"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <User className="w-3.5 h-3.5" />
+                      پنل من
+                    </span>
+                  </button>
+                )}
+                <button
+                  onClick={onLogout}
+                  className="p-2 text-warm-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={onLoginClick}
+                className="px-3 py-1.5 bg-brand-600 text-white rounded-lg text-xs font-semibold hover:bg-brand-700 transition-colors"
+              >
+                ورود / ثبت‌نام
+              </button>
+            )}
+          </div>
+
+          {/* Mobile */}
+          <div className="lg:hidden flex items-center gap-1">
+            <button
+              onClick={onFavoritesClick}
+              className="p-2 text-warm-500 hover:text-warm-800 dark:hover:text-warm-200 rounded-lg relative"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              {favoritesCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center font-bold">
+                  {favoritesCount > 9 ? '9+' : favoritesCount}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={onCalculatorClick}
+              className="p-2 text-warm-500 hover:text-warm-800 dark:hover:text-warm-200 rounded-lg"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </button>
+            <ThemeToggle />
             <button
               onClick={toggleMobileMenu}
-              className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 rounded-xl transition-all duration-200"
+              className="p-2 text-warm-500 hover:text-warm-800 dark:hover:text-warm-200 rounded-lg"
             >
-              {isMobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -234,75 +174,68 @@ const Navigation = memo(({
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-slate-800 border-t border-gray-200 dark:border-gray-700 shadow-lg">
-          <div className="px-4 py-3 space-y-2">
+        <div className="lg:hidden bg-white dark:bg-warm-900 border-t border-warm-200 dark:border-warm-700">
+          <div className="px-4 py-3 space-y-1.5">
             <button
-              onClick={() => handleMobilePageChange('home')}
-              className={`w-full text-right px-4 py-3 rounded-xl font-medium text-sm transition-all duration-300 ${
+              onClick={() => { handlePageChange('home'); closeMobile(); }}
+              className={`w-full text-right px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors ${
                 currentPage === 'home'
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-purple-50 dark:hover:bg-slate-600'
+                  ? 'bg-brand-600 text-white'
+                  : 'text-warm-700 dark:text-warm-300 hover:bg-warm-100 dark:hover:bg-warm-800'
               }`}
             >
-              <span className="flex items-center justify-end space-x-3 space-x-reverse">
-                <Home className="w-5 h-5" />
-                <span>صفحه اصلی</span>
+              <span className="flex items-center justify-end gap-2">
+                <Home className="w-4 h-4" />
+                خانه
               </span>
             </button>
 
-            {/* Mobile User Authentication */}
             {user ? (
-              <div className="space-y-2 pt-2 border-t border-gray-200 dark:border-gray-700">
-                <div className="px-4 py-2 text-sm text-gray-600 dark:text-gray-400">
-                  خوش آمدید، {user.name}
+              <div className="space-y-1.5 pt-2 border-t border-warm-200 dark:border-warm-700">
+                <div className="px-3 py-1.5 text-xs text-warm-500 dark:text-warm-400">
+                  {user.name} سلام
                   {user.role === 'admin' && (
-                    <span className="mr-2 px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-400 text-xs rounded-full">مدیر</span>
+                    <span className="mr-1.5 px-1.5 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 text-[10px] rounded font-bold">مدیر</span>
                   )}
                 </div>
                 {user.role !== 'admin' && (
                   <button
-                    onClick={handleMobileUserDashboardClick}
-                    className="w-full text-right px-4 py-3 rounded-xl font-medium text-sm bg-emerald-600 text-white hover:bg-emerald-700 transition-all duration-300"
+                    onClick={() => { onUserDashboardClick(); closeMobile(); }}
+                    className="w-full text-right px-3 py-2.5 rounded-lg text-sm font-semibold bg-brand-600 text-white"
                   >
-                    <span className="flex items-center justify-end space-x-3 space-x-reverse">
-                      <User className="w-5 h-5" />
-                      <span>پنل کاربری</span>
+                    <span className="flex items-center justify-end gap-2">
+                      <User className="w-4 h-4" />
+                      پنل کاربری
                     </span>
                   </button>
                 )}
                 {user.role === 'admin' && (
                   <button
-                    onClick={() => {
-                      handleMobilePageChange('admin');
-                    }}
-                    className="w-full text-right px-4 py-3 rounded-xl font-medium text-sm bg-red-600 text-white hover:bg-red-700 transition-all duration-300"
+                    onClick={() => { handlePageChange('admin'); closeMobile(); }}
+                    className="w-full text-right px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-600 text-white"
                   >
-                    <span className="flex items-center justify-end space-x-3 space-x-reverse">
-                      <Shield className="w-5 h-5" />
-                      <span>پنل مدیریت</span>
+                    <span className="flex items-center justify-end gap-2">
+                      <Shield className="w-4 h-4" />
+                      پنل مدیریت
                     </span>
                   </button>
                 )}
                 <button
-                  onClick={handleMobileLogout}
-                  className="w-full text-right px-4 py-3 rounded-xl font-medium text-sm bg-red-600 text-white hover:bg-red-700 transition-all duration-300"
+                  onClick={() => { onLogout(); closeMobile(); }}
+                  className="w-full text-right px-3 py-2.5 rounded-lg text-sm font-semibold bg-red-500 text-white"
                 >
-                  <span className="flex items-center justify-end space-x-3 space-x-reverse">
-                    <LogOut className="w-5 h-5" />
-                    <span>خروج</span>
+                  <span className="flex items-center justify-end gap-2">
+                    <LogOut className="w-4 h-4" />
+                    خروج
                   </span>
                 </button>
               </div>
             ) : (
               <button
-                onClick={handleMobileLoginClick}
-                className="w-full text-right px-4 py-3 rounded-xl font-medium text-sm bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300"
+                onClick={() => { onLoginClick(); closeMobile(); }}
+                className="w-full text-right px-3 py-2.5 rounded-lg text-sm font-semibold bg-brand-600 text-white"
               >
-                <span className="flex items-center justify-end space-x-3 space-x-reverse">
-                  <Sparkles className="w-5 h-5" />
-                  <span>ورود / ثبت‌نام</span>
-                  <Lock className="w-4 h-4" />
-                </span>
+                ورود / ثبت‌نام
               </button>
             )}
           </div>

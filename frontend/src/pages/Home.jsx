@@ -213,22 +213,22 @@ const Home = ({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-warm-50 dark:bg-warm-900 flex items-center justify-center">
         <div className="text-center">
           <div className="relative">
-            <div className="w-24 h-24 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin" />
+            <div className="w-20 h-20 border-[3px] border-warm-200 border-t-brand-600 rounded-full animate-spin" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <HomeIcon className="w-8 h-8 text-blue-500" />
+              <HomeIcon className="w-7 h-7 text-brand-600" />
             </div>
           </div>
-          <p className="mt-6 text-gray-600 dark:text-gray-400 text-lg animate-pulse">در حال بارگذاری...</p>
+          <p className="mt-5 text-warm-500 dark:text-warm-400 text-sm animate-pulse">در حال بارگذاری...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="min-h-screen bg-warm-50 dark:bg-warm-900">
       {/* Hero Section */}
       <HeroSection
         onSearch={handleSearch}
@@ -237,18 +237,18 @@ const Home = ({
       />
 
       {/* Main Content */}
-      <div id="listings-section" className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div id="listings-section" className="page-shell py-12 sm:py-14 lg:py-16">
         {/* Page Title */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-sm font-medium mb-4">
-            <Sparkles className="w-4 h-4" />
-            <span>ورژن 2 - جدید و بهبود یافته</span>
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-400 rounded-lg text-xs font-semibold mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>نسخه ۲ — جدیدتر</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-warm-900 dark:text-white mb-2">
             آگهی‌های املاک
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            جستجو و مشاهده بهترین آگهی‌های املاک در سراسر ایران
+          <p className="text-sm text-warm-500 dark:text-warm-400 max-w-md mx-auto">
+            جستجو و مشاهده آگهی‌های املاک در سراسر کشور
           </p>
         </div>
 
@@ -256,11 +256,10 @@ const Home = ({
         <div className="flex justify-center mb-8">
           <button
             onClick={handleCreateAdClick}
-            className="group bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-2xl hover:shadow-xl transition-all duration-300 transform hover:scale-105 font-bold text-lg inline-flex items-center gap-3"
+            className="bg-brand-600 hover:bg-brand-700 text-white px-6 py-3 rounded-xl font-bold text-sm transition-colors duration-200 inline-flex items-center gap-2"
           >
-            <Sparkles className="w-6 h-6 group-hover:animate-bounce" />
+            <Sparkles className="w-4 h-4" />
             <span>ثبت آگهی جدید</span>
-            <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
 
@@ -274,19 +273,19 @@ const Home = ({
 
         {/* Results Info */}
         {Object.keys(searchFilters).length > 0 && (
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 mb-8 border border-gray-100 dark:border-gray-700">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="bg-white dark:bg-warm-800 rounded-xl p-4 mb-6 border border-warm-200 dark:border-warm-700">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
               <div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">نتایج جستجو</h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <h3 className="text-base font-bold text-warm-900 dark:text-white mb-0.5">نتایج جستجو</h3>
+                <p className="text-warm-500 dark:text-warm-400 text-xs">
                   {filteredAds.length} آگهی از {ads.length} آگهی موجود
                 </p>
               </div>
               <button
                 onClick={handleClearFilters}
-                className="px-6 py-3 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 text-gray-700 dark:text-gray-300 rounded-xl font-medium transition-all duration-200 flex items-center gap-2"
+                className="px-4 py-2 bg-warm-100 dark:bg-warm-700 hover:bg-warm-200 dark:hover:bg-warm-600 text-warm-700 dark:text-warm-300 rounded-lg text-xs font-medium transition-colors duration-150 flex items-center gap-1.5"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 پاک کردن فیلترها
@@ -296,7 +295,7 @@ const Home = ({
         )}
 
         {/* Ads Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
           {filteredAds.map((ad) => (
             <ModernAdCard
               key={getEntityId(ad)}
@@ -322,18 +321,18 @@ const Home = ({
 
         {/* Empty State */}
         {filteredAds.length === 0 && (
-          <div className="text-center py-16">
-            <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-8 sm:p-12 border border-gray-100 dark:border-gray-700 max-w-lg mx-auto">
-              <div className="w-24 h-24 bg-gray-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-12 h-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h4" />
+          <div className="text-center py-12">
+            <div className="bg-white dark:bg-warm-800 rounded-xl p-8 border border-warm-200 dark:border-warm-700 max-w-sm mx-auto">
+              <div className="w-16 h-16 bg-warm-100 dark:bg-warm-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-warm-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">هیچ آگهی‌ای یافت نشد</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">با تغییر فیلترهای جستجو، آگهی‌های بیشتری را مشاهده کنید</p>
+              <h3 className="text-lg font-bold text-warm-900 dark:text-white mb-2">آگهی‌ای پیدا نشد</h3>
+              <p className="text-warm-500 dark:text-warm-400 text-sm mb-4">فیلترها رو تغییر بدید تا نتایج بیشتری ببینید</p>
               <button
                 onClick={handleClearFilters}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-200 transform hover:scale-105 shadow-lg"
+                className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
               >
                 مشاهده همه آگهی‌ها
               </button>
@@ -366,12 +365,12 @@ const Home = ({
       {/* Success Message */}
       {showSuccessMessage && (
         <div className="fixed bottom-4 right-4 z-50">
-          <div className="bg-green-600 text-white px-8 py-4 rounded-2xl shadow-2xl border border-green-500 animate-fade-in-up">
-            <div className="flex items-center gap-3">
-              <CheckCircle2 className="w-8 h-8 animate-bounce" />
+          <div className="bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-xl animate-fade-in-up">
+            <div className="flex items-center gap-2.5">
+              <CheckCircle2 className="w-5 h-5" />
               <div>
-                <div className="font-bold text-lg">آگهی شما با موفقیت ثبت شد!</div>
-                <div className="text-sm opacity-90">بعد از تایید مدیریت نمایش داده خواهد شد</div>
+                <div className="font-bold text-sm">آگهی ثبت شد!</div>
+                <div className="text-xs opacity-80">بعد از تایید مدیریت نمایش داده می‌شه</div>
               </div>
             </div>
           </div>

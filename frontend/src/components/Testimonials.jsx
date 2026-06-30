@@ -6,34 +6,34 @@ const Testimonials = memo(() => {
   const testimonials = [
     {
       id: 1,
-      name: 'محمد رضایی',
-      role: 'خریدار ملک',
-      avatar: '👨‍💼',
-      content: 'با استفاده از این پلتفرم توانستم خانه رویایی خود را در کمتر از یک هفته پیدا کنم. رابط کاربری عالی و اطلاعات کامل بود.',
+      name: 'رضا عباسی',
+      role: 'خریدار',
+      avatar: '🏠',
+      content: 'خونه‌ای که می‌خواستم رو اینجا پیدا کردم. فیلتر قیمت و متراژ خیلی کمک کرد سریع‌تر تصمیم بگیرم.',
       rating: 5
     },
     {
       id: 2,
-      name: 'سارا احمدی',
-      role: 'فروشنده ملک',
-      avatar: '👩‍💼',
-      content: 'ملک من در عرض چند روز فروش رفت. پشتیبانی عالی و فرآیند ثبت آگهی بسیار ساده بود.',
+      name: 'نیلوفر شریفی',
+      role: 'فروشنده',
+      avatar: '🔑',
+      content: 'آگهیمو زدم و ظرف یه هفته چند نفر زنگ زدن. فرآیند ثبت واقعاً ساده‌ست.',
       rating: 5
     },
     {
       id: 3,
-      name: 'علی محمدی',
-      role: 'مستاجر',
-      avatar: '👨‍💻',
-      content: 'جستجوی پیشرفته و فیلترهای دقیق کمک کرد تا سریع‌تر خانه مورد نظرم را پیدا کنم.',
+      name: 'امیر حسینی',
+      role: 'مشاور املاک',
+      avatar: '📊',
+      content: 'پنل مدیریت آگهی‌ها خیلی تمیزه. می‌تونم همه چیز رو یکجا ببینم و مدیریت کنم.',
       rating: 4
     },
     {
       id: 4,
-      name: 'مریم کریمی',
-      role: 'سرمایه‌گذار',
-      avatar: '👩‍💻',
-      content: 'به عنوان سرمایه‌گذار، دسترسی به آمار و اطلاعات دقیق بازار برای من بسیار ارزشمند است.',
+      name: 'زهرا کاظمی',
+      role: 'مستأجر',
+      avatar: '🏢',
+      content: 'نقشه تعاملیش عالیه. مستقیم روی نقشه دیدم ملک کجاست و بعد زنگ زدم.',
       rating: 5
     }
   ];
@@ -41,7 +41,7 @@ const Testimonials = memo(() => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
   }, [testimonials.length]);
 
@@ -49,7 +49,7 @@ const Testimonials = memo(() => {
     return Array.from({ length: 5 }).map((_, i) => (
       <svg
         key={i}
-        className={`w-5 h-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'}`}
+        className={`w-4 h-4 ${i < rating ? 'text-brand-500' : 'text-warm-200 dark:text-warm-700'}`}
         fill="currentColor"
         viewBox="0 0 20 20"
       >
@@ -59,24 +59,24 @@ const Testimonials = memo(() => {
   };
 
   return (
-    <section className="py-16 bg-white dark:bg-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 bg-warm-50 dark:bg-warm-900">
+      <div className="page-shell">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded-full text-sm font-medium mb-4">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-100 dark:bg-brand-900/30 text-brand-800 dark:text-brand-300 rounded-lg text-xs font-semibold mb-3">
             <span>💬</span>
-            <span>نظرات کاربران</span>
+            <span>تجربه کاربران</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            مشتریان ما چه می‌گویند
+          <h2 className="text-2xl sm:text-3xl font-black text-warm-900 dark:text-white mb-2">
+            کاربران چی میگن؟
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            رضایت مشتریان اولویت اصلی ماست
+          <p className="text-warm-500 dark:text-warm-400 text-sm max-w-md mx-auto">
+            نظرات واقعی کسایی که از املاک ایران استفاده کردن
           </p>
         </div>
 
-        {/* Testimonials Carousel */}
-        <div className="relative max-w-4xl mx-auto">
+        {/* Testimonials */}
+        <div className="relative max-w-3xl mx-auto">
           <div className="overflow-hidden">
             <div
               className="flex transition-transform duration-500 ease-out"
@@ -87,28 +87,24 @@ const Testimonials = memo(() => {
                   key={testimonial.id}
                   className="w-full flex-shrink-0 px-4"
                 >
-                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-700 dark:to-slate-600 rounded-3xl p-8 md:p-12 text-center shadow-xl">
-                    {/* Avatar */}
-                    <div className="w-20 h-20 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg">
+                  <div className="bg-white dark:bg-warm-800 rounded-xl p-6 md:p-8 text-center border border-warm-200 dark:border-warm-700">
+                    <div className="w-14 h-14 bg-warm-100 dark:bg-warm-700 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
                       {testimonial.avatar}
                     </div>
 
-                    {/* Stars */}
-                    <div className="flex justify-center gap-1 mb-6">
+                    <div className="flex justify-center gap-0.5 mb-4">
                       {renderStars(testimonial.rating)}
                     </div>
 
-                    {/* Content */}
-                    <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                      "{testimonial.content}"
+                    <p className="text-sm md:text-base text-warm-700 dark:text-warm-300 mb-4 leading-relaxed">
+                      «{testimonial.content}»
                     </p>
 
-                    {/* Author */}
                     <div>
-                      <p className="font-bold text-gray-900 dark:text-white text-lg">
+                      <p className="font-bold text-warm-900 dark:text-white text-sm">
                         {testimonial.name}
                       </p>
-                      <p className="text-gray-500 dark:text-gray-400 text-sm">
+                      <p className="text-warm-500 dark:text-warm-400 text-xs">
                         {testimonial.role}
                       </p>
                     </div>
@@ -118,35 +114,35 @@ const Testimonials = memo(() => {
             </div>
           </div>
 
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-3 mt-8">
+          {/* Dots */}
+          <div className="flex justify-center gap-1.5 mt-6">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-3 rounded-full transition-all duration-300 ${
+                className={`h-1.5 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'w-8 bg-gradient-to-r from-blue-500 to-purple-500'
-                    : 'w-3 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+                    ? 'w-5 bg-brand-600'
+                    : 'w-1.5 bg-warm-300 dark:bg-warm-600 hover:bg-warm-400'
                 }`}
               />
             ))}
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Arrows */}
           <button
             onClick={() => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white dark:bg-slate-700 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-300 z-10"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-9 h-9 bg-white dark:bg-warm-800 rounded-lg border border-warm-200 dark:border-warm-700 flex items-center justify-center text-warm-500 hover:text-warm-800 dark:hover:text-warm-200 transition-colors z-10"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
             onClick={() => setCurrentIndex((prev) => (prev + 1) % testimonials.length)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white dark:bg-slate-700 rounded-full shadow-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-600 transition-all duration-300 z-10"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-9 h-9 bg-white dark:bg-warm-800 rounded-lg border border-warm-200 dark:border-warm-700 flex items-center justify-center text-warm-500 hover:text-warm-800 dark:hover:text-warm-200 transition-colors z-10"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>

@@ -20,7 +20,7 @@ const ModalGallerySection = ({
       onDrop={onDropFiles}
       data-testid="modal-dropzone"
     >
-      <label className={`inline-flex px-4 py-2 rounded-md text-white ${imageLoading ? 'bg-gray-400' : 'bg-blue-600 cursor-pointer'}`}>
+      <label className={`inline-flex px-4 py-2 rounded-lg text-white text-sm font-semibold ${imageLoading ? 'bg-warm-400' : 'bg-brand-700 cursor-pointer hover:bg-brand-800'}`}>
         {imageLoading ? 'در حال بارگذاری...' : 'انتخاب تصاویر'}
         <input type="file" multiple accept="image/*" className="hidden" onChange={onInputChange} disabled={imageLoading} />
       </label>

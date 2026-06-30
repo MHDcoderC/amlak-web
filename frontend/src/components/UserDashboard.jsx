@@ -76,8 +76,8 @@ const UserDashboard = ({ user, onLogout, onClose }) => {
       <div className="fixed inset-0 bg-black/75 flex items-center justify-center z-50 p-4">
         <div className="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-4xl shadow-2xl transform transition-all duration-300 scale-100 max-h-[90vh] overflow-y-auto border border-gray-200 dark:border-slate-700">
           <div className="p-8 text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-            <p className="text-gray-600 dark:text-slate-300">در حال بارگذاری اطلاعات...</p>
+            <div className="animate-spin rounded-full h-10 w-10 border-[3px] border-warm-200 border-t-brand-600 mx-auto mb-3"></div>
+            <p className="text-warm-500 text-sm">در حال بارگذاری...</p>
           </div>
         </div>
       </div>
@@ -111,7 +111,7 @@ const UserDashboard = ({ user, onLogout, onClose }) => {
         <div className="bg-slate-900 dark:bg-slate-950 text-white p-6 rounded-t-3xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+              <div className="w-9 h-9 bg-brand-700 rounded-lg flex items-center justify-center">
                 <LayoutDashboard className="w-5 h-5 text-white" />
               </div>
               <div>
@@ -142,7 +142,7 @@ const UserDashboard = ({ user, onLogout, onClose }) => {
           {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             <div className="bg-white dark:bg-slate-800 rounded-xl p-5 text-center border border-gray-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex justify-center mb-2"><FileText className="w-6 h-6 text-blue-500" /></div>
+              <div className="flex justify-center mb-2"><FileText className="w-5 h-5 text-brand-600" /></div>
               <div className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{dashboardData?.totalAds || 0}</div>
               <div className="text-gray-500 dark:text-slate-400 text-xs">کل آگهی‌ها</div>
             </div>
@@ -180,7 +180,7 @@ const UserDashboard = ({ user, onLogout, onClose }) => {
           {/* Recent Ads */}
           <div className="bg-gray-50 dark:bg-slate-800 rounded-xl p-6 border border-gray-200 dark:border-slate-700">
             <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
-              <FileText className="w-6 h-6 text-blue-500" />
+              <FileText className="w-5 h-5 text-brand-600" />
               آخرین آگهی‌های شما
             </h3>
             

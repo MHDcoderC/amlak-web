@@ -116,7 +116,7 @@ const AppContent = memo(() => {
   }, [navigate]);
 
   return (
-    <div className="App min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
+    <div className="App min-h-screen bg-warm-50 dark:bg-warm-900 transition-colors duration-300">
       <ToastContainer />
 
       <Navigation

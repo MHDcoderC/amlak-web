@@ -22,10 +22,10 @@ const Pagination = memo(({ currentPage, totalPages, onPageChange }) => {
         <button
           key={i}
           onClick={() => handlePageChange(i)}
-          className={`min-w-[40px] h-10 px-3 rounded-xl font-bold transition-all duration-200 ${
+          className={`min-w-[36px] h-9 px-2.5 rounded-lg text-sm font-bold transition-colors duration-150 ${
             i === currentPage
-              ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg scale-110'
-              : 'bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-600 border border-gray-200 dark:border-gray-600'
+              ? 'bg-brand-700 text-white'
+              : 'bg-white dark:bg-warm-800 text-warm-700 dark:text-warm-300 hover:bg-warm-100 dark:hover:bg-warm-700 border border-warm-200 dark:border-warm-600'
           }`}
         >
           {i}
@@ -38,11 +38,11 @@ const Pagination = memo(({ currentPage, totalPages, onPageChange }) => {
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex justify-center items-center gap-2 mt-12 flex-wrap">
+    <div className="flex justify-center items-center gap-1.5 mt-10 flex-wrap">
       <button
         onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="h-10 px-4 rounded-xl font-medium bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 dark:border-gray-600 transition-all duration-200"
+        className="h-9 px-3 rounded-lg text-sm font-medium bg-white dark:bg-warm-800 text-warm-700 dark:text-warm-300 hover:bg-warm-100 dark:hover:bg-warm-700 disabled:opacity-50 disabled:cursor-not-allowed border border-warm-200 dark:border-warm-600 transition-colors duration-150"
       >
         قبلی
       </button>
@@ -52,7 +52,7 @@ const Pagination = memo(({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="h-10 px-4 rounded-xl font-medium bg-white dark:bg-slate-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-200 dark:border-gray-600 transition-all duration-200"
+        className="h-9 px-3 rounded-lg text-sm font-medium bg-white dark:bg-warm-800 text-warm-700 dark:text-warm-300 hover:bg-warm-100 dark:hover:bg-warm-700 disabled:opacity-50 disabled:cursor-not-allowed border border-warm-200 dark:border-warm-600 transition-colors duration-150"
       >
         بعدی
       </button>

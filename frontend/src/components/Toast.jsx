@@ -20,10 +20,10 @@ const ToastItem = memo(({ toast, onRemove }) => {
   };
 
   const colors = {
-    success: 'from-green-500 to-emerald-600',
-    error: 'from-red-500 to-pink-600',
-    warning: 'from-yellow-500 to-orange-600',
-    info: 'from-blue-500 to-purple-600'
+    success: 'bg-emerald-600',
+    error: 'bg-red-500',
+    warning: 'bg-brand-600',
+    info: 'bg-warm-700'
   };
 
   const handleClose = () => {

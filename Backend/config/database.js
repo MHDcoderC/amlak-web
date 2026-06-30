@@ -3,7 +3,12 @@ const mongoose = require('mongoose');
 // MongoDB Connection Configuration
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/amlak_db');
+    const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/amlak_db';
+    const opts = {};
+    if (process.env.MONGODB_AUTH_SOURCE) {
+      opts.authSource = process.env.MONGODB_AUTH_SOURCE;
+    }
+    const conn = await mongoose.connect(uri, opts);
 
     console.log('✅ MongoDB Connected Successfully!');
     console.log(`🗄️  Database: ${conn.connection.name}`);
