@@ -19,15 +19,12 @@ export default defineConfig({
           charts: ['chart.js', 'react-chartjs-2'],
           maps: ['leaflet']
         },
-        // بهینه‌سازی نام فایل‌ها
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
     },
-    // بهینه‌سازی bundle size
     chunkSizeWarningLimit: 1000,
-    // فشرده‌سازی بیشتر
     terserOptions: {
       compress: {
         drop_console: true,

@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
-import API_BASE_URL from '../config/api';
+import { apiGet } from '../utils/api';
 import authManager from '../utils/auth';
 import { getEntityId } from '../utils/entity';
 import { AlertTriangle, Eye, MousePointerClick, FileText, LayoutDashboard, LogOut, X, XCircle, User, CheckCircle, Clock } from 'lucide-react';
@@ -12,12 +11,7 @@ const UserDashboard = ({ user, onLogout, onClose }) => {
 
   const fetchDashboardData = useCallback(async () => {
     try {
-      const token = authManager.getToken();
-      const response = await axios.get(`${API_BASE_URL}/api/users/dashboard`, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const response = await apiGet('/api/users/dashboard');
       setDashboardData(response.data);
     } catch (err) {
       console.error('Dashboard error:', err);
